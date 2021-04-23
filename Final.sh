@@ -1041,25 +1041,21 @@ Logging "#######################################################################
     if InstallCuda $1;  then echo "InstallCuda ok"  | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorCUDAInstall ${NoColErr}; exit 255; fi
     if InstallcuDNN $1; then echo "InstallcuDNN ok" | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorcuDNNInstall ${NoColErr}; exit 255; fi
     UpdatePackages
-    InstallLamp
-    SetUpPHP
-    InstallZoneminder
-    InstallEventserver
+    #InstallLamp
+    #SetUpPHP
+    #InstallZoneminder
+    #InstallEventserver
     BugFixes_Init
     InstallFaceRecognition
-    AccessRightsZoneminder
+    #AccessRightsZoneminder
     InstallOpenCV
     BugFixes_Init
     AccessRightsZoneminder
-    if [ "$UBUNTU_VER" = "20.04" ]; then CompileFfmpeg; fi
+    #if [ "$UBUNTU_VER" = "20.04" ]; then CompileFfmpeg; fi
     InstallGPUTools
     if InstallYOLO $1; then echo "Installation YOLO ok" | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorMakeYOLO ${NoColErr}; exit 255; fi
     if InstallYOLO_mark $1; then echo "Installation YOLO_mark ok" | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorMakeYOLO_mark ${NoColErr}; exit 255; fi
     Logging "Main $infoEndofInstallation"
-
-Mon 08 Mar 2021 08:51:59 AM UTC make - YOLO erfolgreich beendet.
-Mon 08 Mar 2021 08:51:59 AM UTC Fehler bei make - YOLO, Abbruch...
-
     # cd ~
     # mkdir ffmpeg_sources
     # installLibs
