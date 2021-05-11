@@ -1050,7 +1050,7 @@ Logging "#######################################################################
     #AccessRightsZoneminder
     InstallOpenCV
     BugFixes_Init
-    AccessRightsZoneminder
+    #AccessRightsZoneminder
     #if [ "$UBUNTU_VER" = "20.04" ]; then CompileFfmpeg; fi
     InstallGPUTools
     if InstallYOLO $1; then echo "Installation YOLO ok" | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorMakeYOLO ${NoColErr}; exit 255; fi
