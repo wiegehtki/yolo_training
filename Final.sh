@@ -52,6 +52,7 @@
         declare -r infoOpenCVCUDA="CUDA - Integration in OpenCV erfolgreich durchgeführt"
         declare -r infoMakeYOLO="make - YOLO erfolgreich beendet."
         declare -r infoMakeYOLO_mark="make - YOLO_mark erfolgreich beendet."
+        declare -r infoDownloadPreTrainedModels="Vor-trainierte Gewichtungen werden herunter geladen."
 
         declare -r createInstallationLog="FinalInstall.log anlegen"
         
@@ -137,6 +138,7 @@
         declare -r infoOpenCVCUDA="CUDA - Integration in OpenCV successful."
         declare -r infoMakeYOLO="make - YOLO successful."
         declare -r infoMakeYOLO_mark="make - YOLO_mark successful."
+        declare -r infoDownloadPreTrainedModels="Starting Download for pre-trained weights."
 
         declare -r createInstallationLog="Create FinalInstall.log"
         
@@ -682,7 +684,7 @@ Logging "#######################################################################
         tasksel install lamp-server
         Logging "InstallLAMP $infoStepEnd"
     }                        
- 
+             
     InstallOpenCV() {
         Logging "$installOpenCV"
         apt-get -y install python3-pip \
@@ -777,9 +779,11 @@ Logging "#######################################################################
         (ls ~/darknet/YoloWeights/yolov3.weights >> /dev/null 2>&1 && echo "yolov3.weights ok") || echo "Download: yolov3.weights" && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=10NEJcLeMYxhSx9WTQNHE0gfRaQaV8z8A' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=10NEJcLeMYxhSx9WTQNHE0gfRaQaV8z8A" -O ~/darknet/YoloWeights/yolov3.weights && rm -rf /tmp/cookies.txt
         (ls ~/darknet/YoloWeights/yolov3-tiny.weights >> /dev/null 2>&1 && echo "yolov3-tiny.weights ok") || echo "Download: yolov3-tiny.weights" && wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=12R3y8p-HVUZOvWHAsk2SgrM3hX3k77zt' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=12R3y8p-HVUZOvWHAsk2SgrM3hX3k77zt" -O ~/darknet/YoloWeights/yolov3-tiny.weights && rm -rf /tmp/cookies.txt
    
+        Logging "$infoDownloadPreTrainedModels"
         cd ~/darknet/data
         if [ ! -f ~/darknet/data/darknet53.conv.74 ]; then wget https://pjreddie.com/media/files/darknet53.conv.74; fi
-
+        if [ ! -f ~/darknet/data/yolov4.conv.137 ];   then wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.conv.137; fi
+             
         Logging "InstallYOLO $infoStep2"
         cd ~/darknet
         make
@@ -1025,8 +1029,8 @@ Logging "#######################################################################
     echo ""
     echo -e "${ColImp}$infoZMSelect ${NoColImp}$1" 
 
-    read -rsn1 input
-    if [ "$input" = "1" ]; then export ZM_VERSION="1.34"; add-apt-repository -y ppa:iconnor/zoneminder-1.34; else add-apt-repository -y ppa:iconnor/zoneminder-master; export ZM_VERSION="1.35"; fi
+    #read -rsn1 input
+    #if [ "$input" = "1" ]; then export ZM_VERSION="1.34"; add-apt-repository -y ppa:iconnor/zoneminder-1.34; else add-apt-repository -y ppa:iconnor/zoneminder-master; export ZM_VERSION="1.35"; fi
 
     #VERSION = "1.34"
     #    [[ "$ZM_VERSION" == "$VERSION" ]] && add-apt-repository -y ppa:iconnor/zoneminder-1.34 || add-apt-repository -y ppa:iconnor/zoneminder-master
@@ -1078,34 +1082,7 @@ Logging "#######################################################################
     # rm *.zip
     # logger "Compiling opencv..." -tEventServer
 
-    #Test:
-    #https://zm.wiegehtki.de/zm/api/host/getVersion.json
-    #https://zm.wiegehtki.de/zm/?view=image&eid=<EVENTID_EINSETZEN>&fid=snapshot
-    #https://zm.wiegehtki.de/zm/?view=image&eid=<EVENTID_EINSETZEN>&fid=alarm
 
-    ##### Verzeichnis für Gesichtstraining
-    #/var/lib/zmeventnotification/known_faces
-
-    #sudo -u www-data /var/lib/zmeventnotification/bin/zm_train_faces.py
-    #sudo -u www-data /var/lib/zmeventnotification/bin/zm_detect.py --config /etc/zm/objectconfig.ini  --eventid 1 --monitorid 1 --debug
-    #chown -R www-data:www-data /var/lib/zmeventnotification/known_faces
-    #echo "<DEINE_IP>  <DEINE_DOMAIN>" >> /etc/hosts
-
-    ##### Link für Reolink Kameras, getestet mit RL410 #####
-    #rtmp://<KAMERA_IP>/bcs/channel0_main.bcs?channel=0&stream=0&user=admin&password=<Dein Passwort>
-    
-    #Test Chromebrowser:
-    #https://zm.wiegehtki.de/zm/api/host/getVersion.json
-    #https://zm.wiegehtki.de/zm/?view=image&eid=<EVENTID_EINSETZEN>&fid=snapshot
-    #https://zm.wiegehtki.de/zm/?view=image&eid=<EVENTID_EINSETZEN>&fid=alarm
-    
-    #/var/lib/zmeventnotification/known_faces
-    #sudo -u www-data /var/lib/zmeventnotification/bin/zm_train_faces.py
-    #sudo -u www-data /var/lib/zmeventnotification/bin/zm_detect.py --config /etc/zm/objectconfig.ini  --eventid 1 --monitorid 1 --debug
-    #chown -R www-data:www-data /var/lib/zmeventnotification/known_faces
-    #echo "zm.wiegehtki.de" >> /etc/hosts
-    
-    #rtmp://192.168.100.164/bcs/channel0_main.bcs?channel=0&stream=0&user=admin&password=<Dein Passwort>
 
 
 
