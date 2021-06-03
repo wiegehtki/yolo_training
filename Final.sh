@@ -795,8 +795,8 @@ Logging "#######################################################################
     InstallYOLO_mark() {
         Logging "$installYOLO_mark"
         if [ ! -d ~/darknet ]; then 
-            if [ -d ~/zoneminder/darknet.repo ]; then
-                mv ~/zoneminder/darknet.repo ~/darknet
+            if [ -d ~/yolo_training/darknet.repo ]; then
+                mv ~/yolo_training/darknet.repo ~/darknet
             else
                 Loggging "$errorDarknetRepoNotExist"
                 return 1
@@ -1025,9 +1025,9 @@ Logging "#######################################################################
     ColImp="\033[1;32m"
     NoColImp="\033[0m"
 
-    echo -e "${ColImp}$infoZMVersion ${NoColImp}$1" 
-    echo ""
-    echo -e "${ColImp}$infoZMSelect ${NoColImp}$1" 
+    #echo -e "${ColImp}$infoZMVersion ${NoColImp}$1" 
+    #echo ""
+    #echo -e "${ColImp}$infoZMSelect ${NoColImp}$1" 
 
     #read -rsn1 input
     #if [ "$input" = "1" ]; then export ZM_VERSION="1.34"; add-apt-repository -y ppa:iconnor/zoneminder-1.34; else add-apt-repository -y ppa:iconnor/zoneminder-master; export ZM_VERSION="1.35"; fi
@@ -1049,11 +1049,11 @@ Logging "#######################################################################
     #SetUpPHP
     #InstallZoneminder
     #InstallEventserver
-    BugFixes_Init
-    InstallFaceRecognition
+    #BugFixes_Init
+    #InstallFaceRecognition
     #AccessRightsZoneminder
     InstallOpenCV
-    BugFixes_Init
+    #BugFixes_Init
     #AccessRightsZoneminder
     #if [ "$UBUNTU_VER" = "20.04" ]; then CompileFfmpeg; fi
     InstallGPUTools
