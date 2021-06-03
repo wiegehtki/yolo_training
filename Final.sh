@@ -689,6 +689,9 @@ Logging "#######################################################################
         Logging "$installOpenCV"
         apt-get -y install python3-pip \
                    python3-dev
+                   
+        python3 -m pip install protobuf==3.3.0
+        python3 -m pip install numpy==1.16.5
         #python2 -m pip  install numpy
         cd ~
         wget  -O opencv.zip $OPENCV_URL
