@@ -773,7 +773,7 @@ Logging "#######################################################################
             Loggging "$errorDarknetRepoExist"
             return 1
         else  
-            mv ~/zoneminder/darknet.repo ~/darknet
+            mv ~/yolo_training/darknet.repo ~/darknet
         fi 
 
         Logging "InstallYOLO $infoStep1"
