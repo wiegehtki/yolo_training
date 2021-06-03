@@ -318,7 +318,7 @@
                  
 
 Logging "########################################################################################################################"
-Logging "# Zoneminder - Objekterkennung mit OpenCV, CUDA, cuDNN und YOLO auf Ubuntu $UBUNTU_VER                       By WIEGEHTKI.DE #"
+Logging "# YOLO - Objekterkennung mit OpenCV, CUDA, cuDNN              Ubuntu $UBUNTU_VER                       By WIEGEHTKI.DE #"
 Logging "# Zur freien Verwendung. Ohne Gewaehr und nur auf Testsystemen anzuwenden                                              #" 
 Logging "# For free use. Without warranty and to be used only on test systems                                                   #" 
 Logging "# V2.1.0 (Rev a), 30.01.2021                                                                                           #" 
