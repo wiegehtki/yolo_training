@@ -311,7 +311,7 @@
         update-initramfs -u
         Logging "$infoStepEnd"
     }
-    chmod -R +x ~/zoneminder/*
+    #chmod -R +x ~/zoneminder/*
     apt-get -y install software-properties-common
     UpdatePackages
     InstallTools
