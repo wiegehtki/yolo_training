@@ -8,10 +8,8 @@
 
 
 #### Videos zu diesem Projekt (und weitere) findet Ihr auf https://wiegehtki.de
-* **Einführung in das Projekt:** https://youtu.be/TsEwtInBl3c
+* **Einführung in das Projekt:** https://youtu.be/l5IeFMQ0iQc
 * **Installation des Betriebssystems:** https://youtu.be/_P9d5rERbBA
-* **Installation der Software:** https://youtu.be/9pQ3ouCPqm8
-* **Inbetriebnahme:** https://youtu.be/3yM87yOXaBs
 
 
 #### Aufsetzen des Systems:
