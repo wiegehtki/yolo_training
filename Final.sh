@@ -790,7 +790,7 @@ Logging "#######################################################################
         Logging "InstallYOLO $infoStep2"
         cd ~/darknet
         make
-        ([ $? -eq 0 ] && Logging "$infoMakeYOLO") || Logging "$errorMakeYOLO" && return 1
+        ([ $? -eq 0 ] && Logging "$infoMakeYOLO") || (Logging "$errorMakeYOLO" && return 1)
         Logging "InstallYOLO $infoStepEnd"
         return 0
     }
@@ -1061,7 +1061,7 @@ Logging "#######################################################################
     #if [ "$UBUNTU_VER" = "20.04" ]; then CompileFfmpeg; fi
     InstallGPUTools
     if InstallYOLO $1; then echo "Installation YOLO ok" | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorMakeYOLO ${NoColErr}; exit 255; fi
-    if InstallYOLO_mark $1; then echo "Installation YOLO_mark ok" | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorMakeYOLO_mark ${NoColErr}; exit 255; fi
+    #if InstallYOLO_mark $1; then echo "Installation YOLO_mark ok" | tee -a  ~/FinalInstall.log; else ColErr="\033[1;31m"; NoColErr="\033[0m"; echo -e ${ColErr}$(date -u) $errorMakeYOLO_mark ${NoColErr}; exit 255; fi
     Logging "Main $infoEndofInstallation"
     # cd ~
     # mkdir ffmpeg_sources
